@@ -38,6 +38,8 @@ class BookThumbnail extends StatelessWidget {
     double coverHight = deviceHight * 1 / 5; // Old hight: 160
     double bookInfoPadding = 10;
     double bookCardPadding = 5;
+    double bookInfoWidth =
+        deviceWidth - coverWidth - bookInfoPadding * 2 - bookCardPadding * 2;
 
     return Padding(
       padding: EdgeInsets.only(
@@ -84,30 +86,36 @@ class BookThumbnail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: deviceWidth -
-                          coverWidth -
-                          bookInfoPadding * 2 -
-                          bookCardPadding * 2,
+                      width: bookInfoWidth,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                'Money',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                          SizedBox(
+                            width: bookInfoWidth - bookInfoWidth * 1 / 5,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Text(
+                                    'Money',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Thony Robbins',
-                                style: TextStyle(
-                                  fontSize: 18,
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Text(
+                                    'Thony Robbins',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -117,10 +125,7 @@ class BookThumbnail extends StatelessWidget {
                     ),
                     const Expanded(child: SizedBox()),
                     SizedBox(
-                      width: deviceWidth -
-                          coverWidth -
-                          bookInfoPadding * 2 -
-                          bookCardPadding * 2,
+                      width: bookInfoWidth,
                       child: Row(
                         children: const [
                           Text('Progress'),
@@ -135,10 +140,7 @@ class BookThumbnail extends StatelessWidget {
                     ),
                     SizedBox(
                       child: LinearPercentIndicator(
-                        width: deviceWidth -
-                            coverWidth -
-                            bookInfoPadding * 2 -
-                            bookCardPadding * 2,
+                        width: bookInfoWidth,
                         percent: 66 / 100,
                         lineHeight: 8,
                         backgroundColor: Colors.blue.shade200,
