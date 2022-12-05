@@ -10,7 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   final BookRepository _bookRepository;
 
-  Future<void> getBookModel() async {
+  Future<void> start() async {
     emit(HomeState(status: Status.loading));
 
     try {
@@ -30,6 +30,5 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       );
     }
-    ;
   }
 }

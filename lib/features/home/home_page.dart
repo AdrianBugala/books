@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
+import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
 import 'package:my_books/repositories/book_repository.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(BookRepository()),
+      create: (context) => HomeCubit(BookRepository())..start(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -26,16 +27,18 @@ class HomePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
+          final bookModel = state.bookModel;
           return Scaffold(
             appBar: AppBar(
               title: const Text('Books'),
             ),
             body: Center(
               child: ListView(
-                children: const [
-                  BookThumbnail(),
-                  BookThumbnail(),
-                  BookThumbnail(),
+                children: [
+                  if (bookModel != null)
+                    BookThumbnail(
+                      bookModel: bookModel,
+                    ),
                 ],
               ),
             ),
@@ -48,9 +51,10 @@ class HomePage extends StatelessWidget {
 
 class BookThumbnail extends StatelessWidget {
   const BookThumbnail({
+    required this.bookModel,
     Key? key,
   }) : super(key: key);
-
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -89,13 +93,12 @@ class BookThumbnail extends StatelessWidget {
               Container(
                 height: coverHight,
                 width: coverWidth,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       bottomLeft: Radius.circular(10)),
                   image: DecorationImage(
-                    image: NetworkImage(
-                        'https://www.osmpower.pl/userdata/public/gfx/733b8dc58a4df71a4215562c0cd52e94.jpg'),
+                    image: NetworkImage(bookModel.imageURL!),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -115,12 +118,12 @@ class BookThumbnail extends StatelessWidget {
                             width: bookInfoWidth - bookInfoWidth * 1 / 5,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Text(
-                                    'Money',
-                                    style: TextStyle(
+                                    bookModel.title,
+                                    style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -129,8 +132,8 @@ class BookThumbnail extends StatelessWidget {
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Text(
-                                    'Thony Robbins',
-                                    style: TextStyle(
+                                    bookModel.author,
+                                    style: const TextStyle(
                                       fontSize: 18,
                                     ),
                                   ),
@@ -148,11 +151,11 @@ class BookThumbnail extends StatelessWidget {
                     SizedBox(
                       width: bookInfoWidth,
                       child: Row(
-                        children: const [
-                          Text('Progress'),
-                          Expanded(child: SizedBox()),
-                          Text('Pages:'),
-                          Text('555'),
+                        children: [
+                          const Text('Progress'),
+                          const Expanded(child: SizedBox()),
+                          const Text('Pages:'),
+                          Text('${bookModel.pages}'),
                         ],
                       ),
                     ),
@@ -162,7 +165,7 @@ class BookThumbnail extends StatelessWidget {
                     SizedBox(
                       child: LinearPercentIndicator(
                         width: bookInfoWidth,
-                        percent: 66 / 100,
+                        percent: bookModel.currentPage! / bookModel.pages!,
                         lineHeight: 8,
                         backgroundColor: Colors.blue.shade200,
                         progressColor: Colors.blue,
