@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
+import 'package:my_books/repositories/book_repository.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,7 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(),
+      create: (context) => HomeCubit(BookRepository()),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.status == Status.error) {
