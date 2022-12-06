@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_books/domain/models/book_model.dart';
+import 'package:my_books/features/details/details_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class BookThumbnail extends StatelessWidget {
@@ -51,7 +52,7 @@ class BookThumbnail extends StatelessWidget {
                       topLeft: Radius.circular(10),
                       bottomLeft: Radius.circular(10)),
                   image: DecorationImage(
-                    image: NetworkImage(bookModel.imageURL!),
+                    image: NetworkImage(bookModel.imageURL ?? ''),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -95,7 +96,14 @@ class BookThumbnail extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        DetailsPage(bookModel: bookModel),
+                                  ),
+                                );
+                              },
                               icon: const Icon(Icons.more_vert))
                         ],
                       ),
@@ -118,7 +126,8 @@ class BookThumbnail extends StatelessWidget {
                     SizedBox(
                       child: LinearPercentIndicator(
                         width: bookInfoWidth,
-                        percent: bookModel.currentPage! / bookModel.pages!,
+                        percent: (bookModel.currentPage ?? 0) /
+                            (bookModel.pages ?? 0),
                         lineHeight: 8,
                         backgroundColor: Colors.blue.shade200,
                         progressColor: Colors.blue,
