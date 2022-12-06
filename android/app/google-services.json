@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "120493314831",
+    "project_id": "my-books02-adrian-bugala",
+    "storage_bucket": "my-books02-adrian-bugala.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120493314831:android:8a53296609ae846bea247a",
+        "android_client_info": {
+          "package_name": "com.adrianbugala.my_books"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120493314831-qhbk3156nshcg29bpv14s7eqohki1kaq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ_KXdO62016_bWL0PI7CmYT_ddQFv83E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120493314831-qhbk3156nshcg29bpv14s7eqohki1kaq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
