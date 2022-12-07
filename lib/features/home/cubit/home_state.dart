@@ -3,11 +3,11 @@ part of 'home_cubit.dart';
 class HomeState {
   HomeState({
     this.status = Status.initial,
-    this.bookModel,
+    this.bookModel = const [],
     this.errorMessage,
   });
 
   final Status status;
-  final BookModel? bookModel;
+  final List<BookModel> bookModel;
   final String? errorMessage;
 }

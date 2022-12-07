@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
+import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
 import 'package:my_books/repositories/book_repository.dart';
 import 'package:my_books/widgets/book_thumbnail.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(BookRepository())..start(),
+      create: (context) => HomeCubit(BookRepository(BookRemoteDataSource()))..start(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -26,7 +27,6 @@ class HomePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          final bookModel = state.bookModel;
           return Scaffold(
             appBar: AppBar(
               title: const Text('Books'),
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
             body: Center(
               child: ListView(
                 children: [
-                  if (bookModel != null)
+                  for (final bookModel in state.bookModel)
                     BookThumbnail(
                       bookModel: bookModel,
                     ),

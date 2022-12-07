@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:my_books/app/core/enums.dart';
 import 'package:my_books/domain/models/book_model.dart';
@@ -9,26 +11,27 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._bookRepository) : super(HomeState());
 
   final BookRepository _bookRepository;
+  StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     emit(HomeState(status: Status.loading));
 
-    try {
-      final bookModel = await _bookRepository.getBookModel();
+    _streamSubscription = _bookRepository.getBookDocuments().listen(
+      (books) {
+        emit(
+          HomeState(status: Status.success, bookModel: books),
+        );
+      },
+    )..onError((error) {
+        emit(
+          HomeState(status: Status.error, errorMessage: error.toString()),
+        );
+      });
+  }
 
-      emit(
-        HomeState(
-          status: Status.success,
-          bookModel: bookModel,
-        ),
-      );
-    } catch (error) {
-      emit(
-        HomeState(
-          status: Status.error,
-          errorMessage: error.toString(),
-        ),
-      );
-    }
+  @override
+  Future<void> close() {
+    _streamSubscription?.cancel();
+    return super.close();
   }
 }
