@@ -43,7 +43,6 @@ class BookThumbnail extends StatelessWidget {
           ),
           child: Row(
             children: [
-              //! Book cover
               Container(
                 height: coverHight,
                 width: coverWidth,
@@ -57,7 +56,6 @@ class BookThumbnail extends StatelessWidget {
                   ),
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.all(bookInfoPadding),
                 child: Column(
