@@ -16,7 +16,7 @@ class _AddPageState extends State<AddPage> {
   @override
   Widget build(BuildContext context) {
     String? title;
-    String? author = 'Author';
+    String? author;
     String? imageURL;
     String? description;
     String? comment;
@@ -64,9 +64,7 @@ class _AddPageState extends State<AddPage> {
                   children: [
                     TextField(
                       onChanged: (newValue) {
-                        setState(() {
-                          title = newValue;
-                        });
+                        title = newValue;
                       },
                       autofocus: true,
                       textCapitalization: TextCapitalization.sentences,
