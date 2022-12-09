@@ -20,7 +20,7 @@ class DetailsPage extends StatelessWidget {
         deviceWidth - coverWidth - bookInfoPadding * 2 - bookCardPadding * 2;
 
     return Scaffold(
-      appBar: AppBar(title: Text(bookModel.title)),
+      appBar: AppBar(title: const Text('My Book')),
       body: Padding(
         padding: EdgeInsets.all(bookCardPadding),
         child: Column(
@@ -120,8 +120,10 @@ class DetailsPage extends StatelessWidget {
                           SizedBox(
                             child: LinearPercentIndicator(
                               width: bookInfoWidth,
-                              percent: (bookModel.currentPage ?? 0) /
-                                  (bookModel.pages ?? 0),
+                              percent: bookModel.pages == 0
+                                  ? 0
+                                  : (bookModel.currentPage ?? 0) /
+                                      (bookModel.pages ?? 0),
                               lineHeight: 8,
                               backgroundColor: Colors.blue.shade200,
                               progressColor: Colors.blue,

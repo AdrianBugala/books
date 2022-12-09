@@ -124,8 +124,10 @@ class BookThumbnail extends StatelessWidget {
                     SizedBox(
                       child: LinearPercentIndicator(
                         width: bookInfoWidth,
-                        percent: (bookModel.currentPage ?? 0) /
-                            (bookModel.pages ?? 0),
+                        percent: bookModel.pages == 0
+                            ? 0
+                            : (bookModel.currentPage ?? 0) /
+                                (bookModel.pages ?? 0),
                         lineHeight: 8,
                         backgroundColor: Colors.blue.shade200,
                         progressColor: Colors.blue,
