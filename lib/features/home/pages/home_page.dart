@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
+import 'package:my_books/features/add/add_page.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
 import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/home/pages/book_thumbnail.dart';
@@ -14,7 +15,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(BookRepository(BookRemoteDataSource()))..start(),
+      create: (context) =>
+          HomeCubit(BookRepository(BookRemoteDataSource()))..start(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -40,6 +42,16 @@ class HomePage extends StatelessWidget {
                     ),
                 ],
               ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const AddPage(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.add),
             ),
           );
         },

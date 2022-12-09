@@ -26,4 +26,8 @@ class BookRepository {
           .toList();
     });
   }
+
+  Future<void> add({required BookModel book}) async {
+    return _bookRemoteDataSource.addBook(book: book);
+  }
 }

@@ -11,4 +11,16 @@ class BookRemoteDataSource {
       throw Exception(error.toString());
     }
   }
+
+  Future<void> addBook({required BookModel book}) async {
+    await FirebaseFirestore.instance.collection('books').add({
+      'title': book.title,
+      'author': book.author,
+      'image_url': book.imageURL,
+      'description': book.description,
+      'comment': book.comment,
+      'pages': book.pages,
+      'current_page': book.currentPage,
+    });
+  }
 }
