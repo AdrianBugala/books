@@ -30,4 +30,8 @@ class BookRepository {
   Future<void> add({required BookModel book}) async {
     return _bookRemoteDataSource.addBook(book: book);
   }
+
+  Future<void> remove({required String id}) async {
+    return _bookRemoteDataSource.remove(id: id);
+  }
 }
