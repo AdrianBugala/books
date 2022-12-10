@@ -27,4 +27,12 @@ class BookRemoteDataSource {
   Future<void> remove({required String id}) async {
     FirebaseFirestore.instance.collection('books').doc(id).delete();
   }
+
+  Future<void> updateCurrentPage(
+      {required String id, required double currentPage}) async {
+    FirebaseFirestore.instance
+        .collection('books')
+        .doc(id)
+        .update({'current_page': currentPage});
+  }
 }

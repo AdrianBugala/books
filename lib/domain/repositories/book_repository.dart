@@ -34,4 +34,10 @@ class BookRepository {
   Future<void> remove({required String id}) async {
     return _bookRemoteDataSource.remove(id: id);
   }
+
+  Future<void> updateCurrentPage(
+      {required String id, required double currentPage}) async {
+    return _bookRemoteDataSource.updateCurrentPage(
+        id: id, currentPage: currentPage);
+  }
 }

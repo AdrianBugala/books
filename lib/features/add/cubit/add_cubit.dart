@@ -17,4 +17,14 @@ class AddCubit extends Cubit<AddState> {
       emit(AddState(errorMessage: error.toString()));
     }
   }
+
+  Future<void> updateCurrentPage(
+      {required String id, required double currentPage}) async {
+    try {
+      await _bookRepository.updateCurrentPage(id: id, currentPage: currentPage);
+      emit(AddState(saved: true));
+    } catch (error) {
+      emit(AddState(errorMessage: error.toString()));
+    }
+  }
 }
