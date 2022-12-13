@@ -12,8 +12,8 @@ class BookRemoteDataSource {
     }
   }
 
-  Future<void> addBook({required BookModel book}) async {
-    await FirebaseFirestore.instance.collection('books').add({
+  Future<void> addBook({required BookModel book}) {
+    return FirebaseFirestore.instance.collection('books').add({
       'title': book.title,
       'author': book.author,
       'image_url': book.imageURL,
@@ -24,15 +24,27 @@ class BookRemoteDataSource {
     });
   }
 
-  Future<void> remove({required String id}) async {
-    FirebaseFirestore.instance.collection('books').doc(id).delete();
+  Future<void> remove({required String id}) {
+    return FirebaseFirestore.instance.collection('books').doc(id).delete();
   }
 
   Future<void> updateCurrentPage(
-      {required String id, required double currentPage}) async {
-    FirebaseFirestore.instance
+      {required String id, required double currentPage}) {
+    return FirebaseFirestore.instance
         .collection('books')
         .doc(id)
         .update({'current_page': currentPage});
+  }
+
+  Future<void> updateBookData({required BookModel book}) {
+    return FirebaseFirestore.instance.collection('books').doc(book.id).update({
+      'title': book.title,
+      'author': book.author,
+      'image_url': book.imageURL,
+      'description': book.description,
+      'comment': book.comment,
+      'pages': book.pages,
+      'current_page': book.currentPage,
+    });
   }
 }

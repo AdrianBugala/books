@@ -27,17 +27,21 @@ class BookRepository {
     });
   }
 
-  Future<void> add({required BookModel book}) async {
+  Future<void> add({required BookModel book}) {
     return _bookRemoteDataSource.addBook(book: book);
   }
 
-  Future<void> remove({required String id}) async {
+  Future<void> remove({required String id}) {
     return _bookRemoteDataSource.remove(id: id);
   }
 
   Future<void> updateCurrentPage(
-      {required String id, required double currentPage}) async {
+      {required String id, required double currentPage}) {
     return _bookRemoteDataSource.updateCurrentPage(
         id: id, currentPage: currentPage);
+  }
+
+  Future<void> updateBookData({required BookModel book}) {
+    return _bookRemoteDataSource.updateBookData(book: book);
   }
 }

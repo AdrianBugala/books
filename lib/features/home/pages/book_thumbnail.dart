@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/features/add/add_current_page.dart';
 import 'package:my_books/features/details/details_page.dart';
+import 'package:my_books/features/edit/pages/edit_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
@@ -126,7 +127,12 @@ class BookThumbnail extends StatelessWidget {
                                             bookModel: bookModel,
                                           )));
                                 }
-                                if (value == 2) {}
+                                if (value == 2) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => EditPage(
+                                            bookModel: bookModel,
+                                          )));
+                                }
                                 if (value == 3) {
                                   context
                                       .read<HomeCubit>()
