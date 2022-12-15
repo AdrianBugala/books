@@ -22,8 +22,6 @@ class _EditPageState extends State<EditPage> {
     String? comment;
     double? pages;
     double? currentPage;
-    String defaultCover =
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaBezZp8vcLn-VK1wZ7zo4PQr_8lAGVjbcEV7BSQ2B8Ulstou6Aw3sRREv3nLJJUbClVc&usqp=CAU';
 
     return BlocProvider(
       create: (context) => EditCubit(BookRepository(BookRemoteDataSource())),
@@ -44,17 +42,19 @@ class _EditPageState extends State<EditPage> {
                 actions: [
                   IconButton(
                     onPressed: () {
-                      context.read<EditCubit>().updateBookData(BookModel(
-                          id: widget.bookModel.id,
-                          title: title ?? widget.bookModel.title,
-                          author: author ?? widget.bookModel.author,
-                          imageURL: imageURL ?? defaultCover,
-                          description:
-                              description ?? widget.bookModel.description,
-                          comment: comment ?? widget.bookModel.comment,
-                          pages: pages ?? widget.bookModel.pages,
-                          currentPage:
-                              currentPage ?? widget.bookModel.currentPage));
+                      context.read<EditCubit>().updateBookData(
+                            BookModel(
+                                id: widget.bookModel.id,
+                                title: title ?? widget.bookModel.title,
+                                author: author ?? widget.bookModel.author,
+                                imageURL: imageURL ?? widget.bookModel.imageURL,
+                                description:
+                                    description ?? widget.bookModel.description,
+                                comment: comment ?? widget.bookModel.comment,
+                                pages: pages ?? widget.bookModel.pages,
+                                currentPage: currentPage ??
+                                    widget.bookModel.currentPage),
+                          );
                     },
                     icon: const Icon(Icons.check),
                   ),
