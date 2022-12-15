@@ -19,14 +19,6 @@ class HomePage extends StatelessWidget {
           HomeCubit(BookRepository(BookRemoteDataSource()))..start(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
-          if (state.removnigErrorOccured) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Unable to remove the item'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
           if (state.status == Status.error) {
             final errorMessage = state.errorMessage ?? 'Unknown error';
             ScaffoldMessenger.of(context).showSnackBar(
