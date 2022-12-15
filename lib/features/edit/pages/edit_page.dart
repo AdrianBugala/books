@@ -46,13 +46,15 @@ class _EditPageState extends State<EditPage> {
                     onPressed: () {
                       context.read<EditCubit>().updateBookData(BookModel(
                           id: widget.bookModel.id,
-                          title: title ?? 'Title',
-                          author: author ?? '',
+                          title: title ?? widget.bookModel.title,
+                          author: author ?? widget.bookModel.author,
                           imageURL: imageURL ?? defaultCover,
-                          description: description ?? '',
-                          comment: comment ?? '',
-                          pages: pages ?? 0,
-                          currentPage: currentPage ?? 0));
+                          description:
+                              description ?? widget.bookModel.description,
+                          comment: comment ?? widget.bookModel.comment,
+                          pages: pages ?? widget.bookModel.pages,
+                          currentPage:
+                              currentPage ?? widget.bookModel.currentPage));
                     },
                     icon: const Icon(Icons.check),
                   ),
