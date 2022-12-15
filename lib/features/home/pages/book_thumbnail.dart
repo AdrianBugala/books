@@ -150,7 +150,7 @@ class BookThumbnail extends StatelessWidget {
                         width: bookInfoWidth,
                         child: Row(
                           children: [
-                            const Text('Progress'),
+                            const Text('Progress:'),
                             const Expanded(child: SizedBox()),
                             const Text('Pages:'),
                             Text(bookModel.pages!.toStringAsFixed(0)),
@@ -163,11 +163,13 @@ class BookThumbnail extends StatelessWidget {
                       SizedBox(
                         child: LinearPercentIndicator(
                           width: bookInfoWidth,
+                          center: Text(
+                              '${bookModel.currentPage!.toStringAsFixed(0)} / ${bookModel.pages!.toStringAsFixed(0)}'),
                           percent: bookModel.pages == 0
                               ? 0
                               : (bookModel.currentPage ?? 0) /
                                   (bookModel.pages ?? 0),
-                          lineHeight: 8,
+                          lineHeight: coverHight * 1 / 11,
                           backgroundColor: Colors.blue.shade200,
                           progressColor: Colors.blue,
                           padding: const EdgeInsets.symmetric(horizontal: 0),
