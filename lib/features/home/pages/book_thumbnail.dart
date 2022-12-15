@@ -122,10 +122,11 @@ class BookThumbnail extends StatelessWidget {
                               ],
                               onSelected: (value) {
                                 if (value == 1) {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => AddCurrentPage(
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AddCurrentPage(
                                             bookModel: bookModel,
-                                          )));
+                                          ));
                                 }
                                 if (value == 2) {
                                   Navigator.of(context).push(MaterialPageRoute(
