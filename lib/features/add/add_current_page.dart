@@ -27,8 +27,8 @@ class AddCurrentPage extends StatelessWidget {
           return AlertDialog(
             title: const Text('Current page:'),
             content: TextField(
-              controller:
-                  TextEditingController(text: bookModel.currentPage.toString()),
+              controller: TextEditingController(
+                  text: bookModel.currentPage!.toStringAsFixed(0)),
               onChanged: (newValue) {
                 currentPage = double.tryParse(newValue);
               },

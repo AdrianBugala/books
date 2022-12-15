@@ -110,7 +110,7 @@ class DetailsPage extends StatelessWidget {
                                 const Text('Progress'),
                                 const Expanded(child: SizedBox()),
                                 const Text('Pages:'),
-                                Text('${bookModel.pages}'),
+                                Text(bookModel.pages!.toStringAsFixed(0)),
                               ],
                             ),
                           ),

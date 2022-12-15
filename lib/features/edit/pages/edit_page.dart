@@ -130,8 +130,8 @@ class _EditPageState extends State<EditPage> {
                             padding: const EdgeInsets.only(right: 7.5),
                             child: TextField(
                               controller: TextEditingController(
-                                  text:
-                                      widget.bookModel.currentPage.toString()),
+                                  text: widget.bookModel.currentPage!
+                                      .toStringAsFixed(0)),
                               onChanged: (newValue) {
                                 currentPage = double.tryParse(newValue);
                               },
@@ -147,7 +147,8 @@ class _EditPageState extends State<EditPage> {
                             padding: const EdgeInsets.only(left: 7.5),
                             child: TextField(
                               controller: TextEditingController(
-                                  text: widget.bookModel.pages.toString()),
+                                  text: widget.bookModel.pages!
+                                      .toStringAsFixed(0)),
                               onChanged: (newValue) {
                                 pages = double.tryParse(newValue);
                               },
