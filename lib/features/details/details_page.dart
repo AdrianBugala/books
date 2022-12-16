@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_books/domain/models/book_model.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:my_books/features/home/pages/book_linear_percent_indicator.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({
@@ -118,21 +118,11 @@ class DetailsPage extends StatelessWidget {
                             height: 5,
                           ),
                           SizedBox(
-                            child: LinearPercentIndicator(
-                              width: bookInfoWidth,
-                              center: Text(
-                                  '${bookModel.currentPage!.toStringAsFixed(0)} / ${bookModel.pages!.toStringAsFixed(0)}'),
-                              percent: bookModel.pages == 0
-                                  ? 0
-                                  : (bookModel.currentPage ?? 0) /
-                                      (bookModel.pages ?? 0),
-                              lineHeight: coverHight * 1 / 11,
-                              backgroundColor: Colors.blue.shade200,
-                              progressColor: Colors.blue,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 0),
-                            ),
-                          ),
+                              child: BookLinearPercentIndicator(
+                            bookInfoWidth: bookInfoWidth,
+                            coverHight: coverHight,
+                            bookModel: bookModel,
+                          )),
                         ],
                       ),
                     ),
