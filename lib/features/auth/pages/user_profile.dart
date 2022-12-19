@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutterfire_ui/auth.dart';
 
 class UserProfile extends StatelessWidget {
@@ -8,6 +7,7 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProfileScreen(
+      appBar: AppBar(title: const Text('My Profile')),
       actions: [
         SignedOutAction((context) {
           Navigator.pushReplacementNamed(context, '/');
