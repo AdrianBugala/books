@@ -37,6 +37,12 @@ class HomePage extends StatelessWidget {
             body: Center(
               child: ListView(
                 children: [
+                  Center(
+                      child: Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child:
+                        Text('${state.bookModel.length} books in this folder'),
+                  )),
                   for (final bookModel in state.bookModel)
                     BookThumbnail(
                       bookModel: bookModel,
