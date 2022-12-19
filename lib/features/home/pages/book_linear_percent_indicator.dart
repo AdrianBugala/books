@@ -17,6 +17,8 @@ class BookLinearPercentIndicator extends StatelessWidget {
   double get checkPercentValue {
     if (bookModel.pages! < bookModel.currentPage!) {
       return 0;
+    } else if (bookModel.pages == 0) {
+      return 0;
     }
     return (bookModel.currentPage ?? 0) / (bookModel.pages ?? 0);
   }
