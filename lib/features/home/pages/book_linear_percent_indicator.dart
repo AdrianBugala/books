@@ -26,6 +26,9 @@ class BookLinearPercentIndicator extends StatelessWidget {
   String get text {
     if (bookModel.pages! < bookModel.currentPage!) {
       return 'Fix your pages';
+    } else if ((bookModel.pages! == bookModel.currentPage!) &&
+        bookModel.pages! > 0) {
+      return 'Completed!';
     }
     return '${bookModel.currentPage!.toStringAsFixed(0)} / ${bookModel.pages!.toStringAsFixed(0)}';
   }
@@ -37,6 +40,13 @@ class BookLinearPercentIndicator extends StatelessWidget {
     return Colors.blue.shade200;
   }
 
+  Color get progressColor {
+    if ((bookModel.pages! == bookModel.currentPage!) && bookModel.pages! > 0) {
+      return Colors.green;
+    }
+    return Colors.blue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return LinearPercentIndicator(
@@ -45,7 +55,7 @@ class BookLinearPercentIndicator extends StatelessWidget {
       percent: checkPercentValue,
       lineHeight: coverHight * 1 / 11,
       backgroundColor: backgroundColor,
-      progressColor: Colors.blue,
+      progressColor: progressColor,
       padding: const EdgeInsets.symmetric(horizontal: 0),
     );
   }
