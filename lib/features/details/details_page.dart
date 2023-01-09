@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/features/home/pages/book_linear_percent_indicator.dart';
+import 'package:my_books/features/reading%20history/reading_history.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({
@@ -71,6 +72,7 @@ class DetailsPage extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                //! Title and author
                                 SizedBox(
                                   width: bookInfoWidth - bookInfoWidth * 1 / 5,
                                   child: Column(
@@ -99,10 +101,24 @@ class DetailsPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+
+                                //! History button
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (_) =>
+                                              const ReadingHistory(),
+                                        ),
+                                      );
+                                    },
+                                    icon: const Icon(Icons.history))
                               ],
                             ),
                           ),
                           const Expanded(child: SizedBox()),
+
+                          //! Progress indicator
                           SizedBox(
                             width: bookInfoWidth,
                             child: Row(
@@ -150,6 +166,8 @@ class DetailsPage extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(bookInfoPadding),
+
+                    //! Body of book (description, comment, date etc.)
                     child: ListView(
                       children: [
                         const Text(
