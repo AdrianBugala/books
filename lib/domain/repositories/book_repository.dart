@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
 import 'package:my_books/domain/models/book_model.dart';
 
@@ -21,6 +22,7 @@ class BookRepository {
               comment: book['comment'],
               pages: (book['pages'] + 0.0) as double,
               currentPage: (book['current_page'] + 0.0) as double,
+              dateAdded: (book['date_added'] as Timestamp).toDate(),
             ),
           )
           .toList();

@@ -38,6 +38,7 @@ class BookRemoteDataSource {
       'comment': book.comment,
       'pages': book.pages,
       'current_page': book.currentPage,
+      'date_added': book.dateAdded,
     });
   }
 
@@ -86,6 +87,7 @@ class BookRemoteDataSource {
       'comment': book.comment,
       'pages': book.pages,
       'current_page': book.currentPage,
+      'date_added': book.dateAdded,
     });
   }
 }

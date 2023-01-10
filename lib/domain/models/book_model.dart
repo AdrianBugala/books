@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class BookModel {
   BookModel({
     this.id = '',
@@ -8,6 +10,7 @@ class BookModel {
     required this.comment,
     required this.pages,
     required this.currentPage,
+    required this.dateAdded,
   });
 
   final String id;
@@ -18,4 +21,9 @@ class BookModel {
   final String? comment;
   final double? pages;
   final double? currentPage;
+  final DateTime dateAdded;
+
+  String get dateAddedFormatted {
+    return DateFormat.yMMMd().format(dateAdded);
+  }
 }

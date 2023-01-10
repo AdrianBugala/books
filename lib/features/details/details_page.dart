@@ -180,6 +180,23 @@ class DetailsPage extends StatelessWidget {
                             fontSize: 16,
                           ),
                         ),
+                        const Divider(
+                          height: 20,
+                          endIndent: 10,
+                          indent: 10,
+                          thickness: 1,
+                        ),
+                        const Text(
+                          'Date added:',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          bookModel.dateAddedFormatted,
+                          style: const TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
                       ],
                     ),
                   ),

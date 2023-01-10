@@ -107,14 +107,29 @@ class BookThumbnail extends StatelessWidget {
                         ),
                       ),
                       const Expanded(child: SizedBox()),
+                      Row(
+                        children: [
+                          const Text(
+                            'Date added: ',
+                          ),
+                          Text(
+                            bookModel.dateAddedFormatted,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         width: bookInfoWidth,
                         child: Row(
                           children: [
                             const Text('Progress:'),
                             const Expanded(child: SizedBox()),
-                            const Text('Pages:'),
-                            Text(bookModel.pages!.toStringAsFixed(0)),
+                            const Text('Pages: '),
+                            Text(
+                              bookModel.pages!.toStringAsFixed(0),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
                       ),
