@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
 import 'package:my_books/domain/models/book_model.dart';
+import 'package:my_books/domain/models/reading_history_model.dart';
 
 class BookRepository {
   BookRepository(this._bookRemoteDataSource);
@@ -22,6 +23,21 @@ class BookRepository {
               comment: book['comment'],
               pages: (book['pages'] + 0.0) as double,
               currentPage: (book['current_page'] + 0.0) as double,
+              dateAdded: (book['date_added'] as Timestamp).toDate(),
+            ),
+          )
+          .toList();
+    });
+  }
+
+  Stream<List<ReadingHistoryModel>> getReadingHistory() {
+    return _bookRemoteDataSource.getReadingHistory().map((querySnapshot) {
+      return querySnapshot.docs
+          .map(
+            (book) => ReadingHistoryModel(
+              currentPage: (book['current_page'] + 0.0) as double,
+              lastPage: (book['last_page'] + 0.0) as double,
+              pagesRead: (book['pages_read'] + 0.0) as double,
               dateAdded: (book['date_added'] as Timestamp).toDate(),
             ),
           )

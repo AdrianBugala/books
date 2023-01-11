@@ -1,61 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:my_books/domain/models/reading_history_model.dart';
 
-class ReadingHistory extends StatelessWidget {
-  const ReadingHistory({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
-    double bookInfoPadding = 10;
-    double bookCardPadding = 5;
-
-    return Scaffold(
-      appBar: AppBar(title: const Text('History')),
-      body: Padding(
-        padding: EdgeInsets.all(bookCardPadding),
-        child: Column(
-          children: [
-            Expanded(
-              child: SizedBox(
-                child: Container(
-                  width: deviceWidth,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(15, 0, 0, 0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 2,
-                        offset: const Offset(3, 5),
-                      ),
-                    ],
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  child: Padding(
-                      padding: EdgeInsets.all(bookInfoPadding),
-                      child: ListView.builder(
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return HistoryDetails(
-                            index: index,
-                          );
-                        },
-                      )),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class HistoryDetails extends StatelessWidget {
-  const HistoryDetails({Key? key, required this.index}) : super(key: key);
+  const HistoryDetails({
+    Key? key,
+    required this.historyModel,
+    required this.index,
+  }) : super(key: key);
+  final ReadingHistoryModel historyModel;
   final int index;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -74,14 +29,14 @@ class HistoryDetails extends StatelessWidget {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Date:',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '2023.01.08',
-                    style: TextStyle(
+                    historyModel.dateAddedFormatted,
+                    style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
@@ -92,14 +47,14 @@ class HistoryDetails extends StatelessWidget {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Pages read:',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '50',
-                    style: TextStyle(
+                    historyModel.pagesRead.toStringAsFixed(0),
+                    style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
@@ -116,17 +71,17 @@ class HistoryDetails extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Row(
-                    children: const [
+                    children: [
                       Text(
-                        '10',
-                        style: TextStyle(
+                        historyModel.lastPage.toStringAsFixed(0),
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
-                      Icon(Icons.arrow_right_alt),
+                      const Icon(Icons.arrow_right_alt),
                       Text(
-                        '60',
-                        style: TextStyle(
+                        historyModel.currentPage.toStringAsFixed(0),
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
