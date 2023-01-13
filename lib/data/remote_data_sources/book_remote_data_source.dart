@@ -21,17 +21,19 @@ class BookRemoteDataSource {
     }
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> getReadingHistory() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getReadingHistory(
+      {required String id}) {
     try {
       final userID = FirebaseAuth.instance.currentUser?.uid;
       if (userID == null) {
         throw Exception('User is not logged in');
       }
+
       final stream = FirebaseFirestore.instance
           .collection('users')
           .doc(userID)
           .collection('books')
-          .doc('49FyrMCkAsvNPdgYBOuF')
+          .doc(id)
           .collection('reading_history')
           .orderBy('current_page', descending: true)
           .snapshots();

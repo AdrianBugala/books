@@ -7,7 +7,8 @@ import 'package:my_books/features/reading%20history/cubit/reading_history_cubit.
 import 'package:my_books/features/reading%20history/pages/history_details.dart';
 
 class ReadingHistory extends StatelessWidget {
-  const ReadingHistory({super.key});
+  const ReadingHistory({required this.id, super.key});
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,8 @@ class ReadingHistory extends StatelessWidget {
 
     return BlocProvider(
       create: (context) =>
-          ReadingHistoryCubit(BookRepository(BookRemoteDataSource()))..start(),
+          ReadingHistoryCubit(BookRepository(BookRemoteDataSource()))
+            ..start(id: id),
       child: BlocConsumer<ReadingHistoryCubit, ReadingHistoryState>(
         listener: (context, state) {
           if (state.status == Status.error) {

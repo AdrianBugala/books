@@ -13,9 +13,9 @@ class ReadingHistoryCubit extends Cubit<ReadingHistoryState> {
   final BookRepository _bookRepository;
   StreamSubscription? _streamSubscription;
 
-  Future<void> start() async {
+  Future<void> start({required String id}) async {
     emit(ReadingHistoryState(status: Status.loading));
-    _streamSubscription = _bookRepository.getReadingHistory().listen(
+    _streamSubscription = _bookRepository.getReadingHistory(id: id).listen(
       (books) {
         emit(
           ReadingHistoryState(status: Status.success, historyModel: books),

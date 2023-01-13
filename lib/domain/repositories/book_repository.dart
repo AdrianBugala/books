@@ -30,8 +30,8 @@ class BookRepository {
     });
   }
 
-  Stream<List<ReadingHistoryModel>> getReadingHistory() {
-    return _bookRemoteDataSource.getReadingHistory().map((querySnapshot) {
+  Stream<List<ReadingHistoryModel>> getReadingHistory({required String id}) {
+    return _bookRemoteDataSource.getReadingHistory(id: id).map((querySnapshot) {
       return querySnapshot.docs
           .map(
             (book) => ReadingHistoryModel(

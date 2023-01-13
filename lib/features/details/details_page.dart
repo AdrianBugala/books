@@ -107,8 +107,9 @@ class DetailsPage extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (_) =>
-                                              const ReadingHistory(),
+                                          builder: (_) => ReadingHistory(
+                                            id: bookModel.id,
+                                          ),
                                         ),
                                       );
                                     },
