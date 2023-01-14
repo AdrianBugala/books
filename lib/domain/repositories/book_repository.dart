@@ -62,4 +62,10 @@ class BookRepository {
   Future<void> updateBookData({required BookModel book}) {
     return _bookRemoteDataSource.updateBookData(book: book);
   }
+
+  Future<void> addFileToHistory(
+      {required String bookId, required ReadingHistoryModel history}) {
+    return _bookRemoteDataSource.addFileToHistory(
+        history: history, bookId: bookId);
+  }
 }

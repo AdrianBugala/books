@@ -52,6 +52,7 @@ class BookThumbnail extends StatelessWidget {
             ),
             child: Row(
               children: [
+                //! Book cover
                 Container(
                   height: coverHight,
                   width: coverWidth,
@@ -65,6 +66,8 @@ class BookThumbnail extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                //! Book info
                 Padding(
                   padding: EdgeInsets.all(bookInfoPadding),
                   child: Column(
@@ -77,7 +80,10 @@ class BookThumbnail extends StatelessWidget {
                           children: [
                             SizedBox(
                               width: bookInfoWidth - bookInfoWidth * 1 / 5,
-                              child: Column(
+                              child:
+
+                                  //! Title and author
+                                  Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SingleChildScrollView(
@@ -102,11 +108,15 @@ class BookThumbnail extends StatelessWidget {
                                 ],
                               ),
                             ),
+
+                            //! Popup Button
                             BookPopupMenuButton(bookModel: bookModel),
                           ],
                         ),
                       ),
                       const Expanded(child: SizedBox()),
+
+                      //! Date info
                       Row(
                         children: [
                           const Text(
@@ -118,6 +128,8 @@ class BookThumbnail extends StatelessWidget {
                           ),
                         ],
                       ),
+
+                      //! Progress Indicator
                       SizedBox(
                         width: bookInfoWidth,
                         child: Row(

@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
 import 'package:my_books/domain/models/book_model.dart';
+import 'package:my_books/domain/models/reading_history_model.dart';
 import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/add/cubit/add_cubit.dart';
 
 class AddCurrentPage extends StatelessWidget {
   const AddCurrentPage({Key? key, required this.bookModel}) : super(key: key);
   final BookModel bookModel;
+
   @override
   Widget build(BuildContext context) {
     double? currentPage;
+    double? lastPage = bookModel.currentPage;
+    DateTime? dateAdded = DateTime.now();
+
     return BlocProvider(
       create: (context) => AddCubit(BookRepository(BookRemoteDataSource())),
       child: BlocConsumer<AddCubit, AddState>(
@@ -46,9 +51,18 @@ class AddCurrentPage extends StatelessWidget {
                   const Expanded(child: SizedBox()),
                   ElevatedButton(
                     onPressed: () {
-                      context.read<AddCubit>().updateCurrentPage(
-                          id: bookModel.id,
-                          currentPage: currentPage ?? bookModel.currentPage!);
+                      context
+                          .read<AddCubit>()
+                          .updateCurrentPageAndAddFileToHistory(
+                            bookId: bookModel.id,
+                            currentPage: currentPage ?? bookModel.currentPage!,
+                            history: ReadingHistoryModel(
+                              currentPage: currentPage!,
+                              lastPage: lastPage!,
+                              pagesRead: currentPage! - lastPage,
+                              dateAdded: dateAdded,
+                            ),
+                          );
                     },
                     child: const Text('Update page'),
                   ),
