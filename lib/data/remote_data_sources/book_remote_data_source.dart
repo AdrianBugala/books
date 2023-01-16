@@ -36,7 +36,7 @@ class BookRemoteDataSource {
           .collection('books')
           .doc(id)
           .collection('reading_history')
-          .orderBy('current_page', descending: true)
+          .orderBy('date_added', descending: true)
           .snapshots();
 
       return stream;
