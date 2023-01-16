@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/features/home/pages/book_linear_percent_indicator.dart';
-import 'package:my_books/features/reading%20history/pages/reading_history.dart';
+import 'package:my_books/features/reading%20history/pages/book_history.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({
@@ -107,7 +107,7 @@ class DetailsPage extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (_) => ReadingHistory(
+                                          builder: (_) => BookHistory(
                                             id: bookModel.id,
                                           ),
                                         ),

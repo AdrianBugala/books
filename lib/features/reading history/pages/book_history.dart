@@ -4,10 +4,10 @@ import 'package:my_books/app/core/enums.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
 import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/reading%20history/cubit/reading_history_cubit.dart';
-import 'package:my_books/features/reading%20history/pages/history_details.dart';
+import 'package:my_books/features/reading%20history/pages/book_history_details.dart';
 
-class ReadingHistory extends StatelessWidget {
-  const ReadingHistory({required this.id, super.key});
+class BookHistory extends StatelessWidget {
+  const BookHistory({required this.id, super.key});
   final String id;
 
   @override
@@ -63,7 +63,7 @@ class ReadingHistory extends StatelessWidget {
                             itemCount: state.historyModel.length,
                             itemBuilder: (context, index) {
                               final historyModel = state.historyModel;
-                              return HistoryDetails(
+                              return BookHistoryDetails(
                                 historyModel: historyModel[index],
                                 index: index,
                               );

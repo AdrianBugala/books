@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_books/domain/models/reading_history_model.dart';
 
-
-class HistoryDetails extends StatelessWidget {
-  const HistoryDetails({
+class BookHistoryDetails extends StatelessWidget {
+  const BookHistoryDetails({
     Key? key,
     required this.historyModel,
     required this.index,
