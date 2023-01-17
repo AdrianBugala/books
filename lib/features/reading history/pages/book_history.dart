@@ -57,18 +57,27 @@ class BookHistory extends StatelessWidget {
                             Radius.circular(10),
                           ),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.all(bookInfoPadding),
-                          child: ListView.builder(
-                            itemCount: state.historyModel.length,
-                            itemBuilder: (context, index) {
-                              final historyModel = state.historyModel;
-                              return BookHistoryDetails(
-                                historyModel: historyModel[index],
-                                index: index,
+                        child: Builder(
+                          builder: (context) {
+                            if (state.historyModel.isEmpty) {
+                              return const Center(
+                                child: Text('You don\'t have a story yet'),
                               );
-                            },
-                          ),
+                            }
+                            return Padding(
+                              padding: EdgeInsets.all(bookInfoPadding),
+                              child: ListView.builder(
+                                itemCount: state.historyModel.length,
+                                itemBuilder: (context, index) {
+                                  final historyModel = state.historyModel;
+                                  return BookHistoryDetails(
+                                    historyModel: historyModel[index],
+                                    index: index,
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ),
