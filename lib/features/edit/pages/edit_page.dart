@@ -177,13 +177,7 @@ class _EditPageState extends State<EditPage> {
                                 dateAdded = selectedDate;
                               });
                             },
-                            child: Text(selectedDateFormatted)
-
-                            // Text(dateAdded == null
-                            //     ? DateFormat.yMMMMd().format(dateAdded!)
-                            //     : DateFormat.yMMMMd()
-                            //         .format(widget.bookModel.dateAdded)),
-                            ),
+                            child: Text(selectedDateFormatted)),
                       ],
                     ),
                   ],
