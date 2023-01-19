@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_books/domain/models/book_model.dart';
+import 'package:my_books/domain/models/reading_history_model.dart';
 
 class BookRemoteDataSource {
   Stream<QuerySnapshot<Map<String, dynamic>>> getBookData() {
@@ -13,6 +14,29 @@ class BookRemoteDataSource {
           .collection('users')
           .doc(userID)
           .collection('books')
+          .snapshots();
+
+      return stream;
+    } catch (error) {
+      throw Exception(error.toString());
+    }
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getReadingHistory(
+      {required String id}) {
+    try {
+      final userID = FirebaseAuth.instance.currentUser?.uid;
+      if (userID == null) {
+        throw Exception('User is not logged in');
+      }
+
+      final stream = FirebaseFirestore.instance
+          .collection('users')
+          .doc(userID)
+          .collection('books')
+          .doc(id)
+          .collection('reading_history')
+          .orderBy('date_added', descending: true)
           .snapshots();
 
       return stream;
@@ -88,6 +112,26 @@ class BookRemoteDataSource {
       'pages': book.pages,
       'current_page': book.currentPage,
       'date_added': book.dateAdded,
+    });
+  }
+
+  Future<void> addFileToHistory(
+      {required ReadingHistoryModel history, required String bookId}) {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('books')
+        .doc(bookId)
+        .collection('reading_history')
+        .add({
+      'current_page': history.currentPage,
+      'last_page': history.lastPage,
+      'pages_read': history.pagesRead,
+      'date_added': history.dateAdded,
     });
   }
 }

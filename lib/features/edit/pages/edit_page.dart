@@ -62,8 +62,7 @@ class _EditPageState extends State<EditPage> {
                                   description ?? widget.bookModel.description,
                               comment: comment ?? widget.bookModel.comment,
                               pages: pages ?? widget.bookModel.pages,
-                              currentPage:
-                                  currentPage ?? widget.bookModel.currentPage,
+                              currentPage: widget.bookModel.currentPage,
                               dateAdded:
                                   dateAdded ?? widget.bookModel.dateAdded,
                             ),
@@ -138,43 +137,16 @@ class _EditPageState extends State<EditPage> {
                       ),
                     ),
                     const SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 7.5),
-                            child: TextField(
-                              controller: TextEditingController(
-                                  text: widget.bookModel.currentPage!
-                                      .toStringAsFixed(0)),
-                              onChanged: (newValue) {
-                                currentPage = double.tryParse(newValue);
-                              },
-                              keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                label: Text('Current page:'),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 7.5),
-                            child: TextField(
-                              controller: TextEditingController(
-                                  text: widget.bookModel.pages!
-                                      .toStringAsFixed(0)),
-                              onChanged: (newValue) {
-                                pages = double.tryParse(newValue);
-                              },
-                              keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                label: Text('All pages:'),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    TextField(
+                      controller: TextEditingController(
+                          text: widget.bookModel.pages!.toStringAsFixed(0)),
+                      onChanged: (newValue) {
+                        pages = double.tryParse(newValue);
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        label: Text('All pages:'),
+                      ),
                     ),
                     const SizedBox(
                       height: 15,
@@ -205,13 +177,7 @@ class _EditPageState extends State<EditPage> {
                                 dateAdded = selectedDate;
                               });
                             },
-                            child: Text(selectedDateFormatted)
-
-                            // Text(dateAdded == null
-                            //     ? DateFormat.yMMMMd().format(dateAdded!)
-                            //     : DateFormat.yMMMMd()
-                            //         .format(widget.bookModel.dateAdded)),
-                            ),
+                            child: Text(selectedDateFormatted)),
                       ],
                     ),
                   ],
