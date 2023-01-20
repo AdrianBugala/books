@@ -37,52 +37,44 @@ class BookHistory extends StatelessWidget {
             appBar: AppBar(title: const Text('History')),
             body: Padding(
               padding: EdgeInsets.all(bookCardPadding),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      child: Container(
-                        width: deviceWidth,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(15, 0, 0, 0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 1,
-                              blurRadius: 2,
-                              offset: const Offset(3, 5),
-                            ),
-                          ],
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        child: Builder(
-                          builder: (context) {
-                            if (state.historyModel.isEmpty) {
-                              return const Center(
-                                child: Text('You don\'t have a story yet'),
-                              );
-                            }
-                            return Padding(
-                              padding: EdgeInsets.all(bookInfoPadding),
-                              child: ListView.builder(
-                                itemCount: state.historyModel.length,
-                                itemBuilder: (context, index) {
-                                  final historyModel = state.historyModel;
-                                  return BookHistoryDetails(
-                                    historyModel: historyModel[index],
-                                    index: index,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+              child: Container(
+                width: deviceWidth,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(15, 0, 0, 0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: const Offset(3, 5),
                     ),
-                  )
-                ],
+                  ],
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                child: Builder(
+                  builder: (context) {
+                    if (state.historyModel.isEmpty) {
+                      return const Center(
+                        child: Text('You don\'t have a story yet'),
+                      );
+                    }
+                    return Padding(
+                      padding: EdgeInsets.all(bookInfoPadding),
+                      child: ListView.builder(
+                        itemCount: state.historyModel.length,
+                        itemBuilder: (context, index) {
+                          final historyModel = state.historyModel;
+                          return BookHistoryDetails(
+                            historyModel: historyModel[index],
+                            index: index,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           );

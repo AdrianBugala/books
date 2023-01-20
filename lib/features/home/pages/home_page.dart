@@ -43,21 +43,18 @@ class HomePage extends StatelessWidget {
                     icon: const Icon(Icons.person))
               ],
             ),
-            body: Center(
-              child: ListView(
-                children: [
-                  Center(
-                      child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child:
-                        Text('${state.bookModel.length} books in this folder'),
-                  )),
-                  for (final bookModel in state.bookModel)
-                    BookThumbnail(
-                      bookModel: bookModel,
-                    ),
-                ],
-              ),
+            body: ListView(
+              children: [
+                Center(
+                    child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Text('${state.bookModel.length} books in this folder'),
+                )),
+                for (final bookModel in state.bookModel)
+                  BookThumbnail(
+                    bookModel: bookModel,
+                  ),
+              ],
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
