@@ -7,6 +7,7 @@ import 'package:my_books/features/auth/pages/user_profile.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
 import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/home/pages/book_thumbnail.dart';
+import 'package:my_books/features/home/pages/sorting_popup_menu_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -16,8 +17,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          HomeCubit(BookRepository(BookRemoteDataSource()))..start(),
+      create: (context) => HomeCubit(BookRepository(BookRemoteDataSource()))
+        ..start(sorting: 'title'),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           if (state.status == Status.error) {
@@ -35,6 +36,7 @@ class HomePage extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Books'),
               actions: [
+                const SortingPopupMenuButton(),
                 IconButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(

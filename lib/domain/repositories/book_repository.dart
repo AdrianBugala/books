@@ -10,8 +10,10 @@ class BookRepository {
 
   final BookRemoteDataSource _bookRemoteDataSource;
 
-  Stream<List<BookModel>> getBookDocuments() {
-    return _bookRemoteDataSource.getBookData().map((querySnapshot) {
+  Stream<List<BookModel>> getBookDocuments({required String sorting, }) {
+    return _bookRemoteDataSource
+        .getBookData(sorting: sorting)
+        .map((querySnapshot) {
       return querySnapshot.docs
           .map(
             (book) => BookModel(

@@ -13,20 +13,21 @@ class HomeCubit extends Cubit<HomeState> {
   final BookRepository _bookRepository;
   StreamSubscription? _streamSubscription;
 
-  Future<void> start() async {
+  Future<void> start({required String sorting,}) async {
     emit(HomeState(status: Status.loading));
 
-    _streamSubscription = _bookRepository.getBookDocuments().listen(
+    _streamSubscription =
+        _bookRepository.getBookDocuments(sorting: sorting).listen(
       (books) {
         emit(
           HomeState(status: Status.success, bookModel: books),
         );
       },
     )..onError((error) {
-        emit(
-          HomeState(status: Status.error, errorMessage: error.toString()),
-        );
-      });
+            emit(
+              HomeState(status: Status.error, errorMessage: error.toString()),
+            );
+          });
   }
 
   @override

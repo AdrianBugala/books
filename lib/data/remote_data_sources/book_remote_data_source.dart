@@ -4,7 +4,7 @@ import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/domain/models/reading_history_model.dart';
 
 class BookRemoteDataSource {
-  Stream<QuerySnapshot<Map<String, dynamic>>> getBookData() {
+  Stream<QuerySnapshot<Map<String, dynamic>>> getBookData({required String sorting,}) {
     try {
       final userID = FirebaseAuth.instance.currentUser?.uid;
       if (userID == null) {
@@ -14,6 +14,7 @@ class BookRemoteDataSource {
           .collection('users')
           .doc(userID)
           .collection('books')
+          .orderBy(sorting, descending: false)
           .snapshots();
 
       return stream;
