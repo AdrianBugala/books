@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
 
+// TODO Fix an issue with 'Cannot emit new states after calling close' when sign out
 class SortingPopupMenuButton extends StatelessWidget {
   const SortingPopupMenuButton({
     Key? key,
