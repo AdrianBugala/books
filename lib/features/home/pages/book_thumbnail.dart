@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_books/domain/models/book_model.dart';
-import 'package:my_books/features/details/details_page.dart';
-import 'package:my_books/features/home/pages/book_linear_percent_indicator.dart';
-import 'package:my_books/features/home/pages/book_popup_menu_button.dart';
+import 'package:my_books/features/details/pages/details_page.dart';
+import 'package:my_books/widgets/book_linear_percent_indicator.dart';
+import 'package:my_books/widgets/book_popup_menu_button.dart';
 
 class BookThumbnail extends StatelessWidget {
   const BookThumbnail({
