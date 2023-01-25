@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
+import 'package:my_books/domain/repositories/quote_repository.dart';
 import 'package:my_books/features/add/pages/add_page.dart';
 import 'package:my_books/features/auth/pages/user_profile.dart';
 import 'package:my_books/features/home/cubit/home_cubit.dart';
 import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/home/pages/book_thumbnail.dart';
+import 'package:my_books/features/quote/cubit/quote_cubit.dart';
+import 'package:my_books/widgets/number_of_book.dart';
+import 'package:my_books/features/quote/pages/quote_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -37,6 +41,8 @@ class _HomePageState extends State<HomePage> {
           }
         },
         builder: (context, state) {
+          final bookListLength = state.bookModel.length;
+          final bookModels = state.bookModel;
           return Scaffold(
             appBar: AppBar(
               title: const Text('Books'),
@@ -49,25 +55,31 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.person))
               ],
             ),
-            body: Builder(builder: (context) {
-              if (currentIndex == 0) {
-                return ListView(
-                  children: [
-                    Center(
-                        child: Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                          '${state.bookModel.length} books in this folder'),
-                    )),
-                    for (final bookModel in state.bookModel)
-                      BookThumbnail(
-                        bookModel: bookModel,
-                      ),
-                  ],
-                );
-              }
-              return const QuotePage();
-            }),
+            body: BlocProvider(
+              create: (context) => QuoteCubit(QuoteRepository())..getQuote(),
+              child: BlocBuilder<QuoteCubit, QuoteState>(
+                builder: (context, state) {
+                  return Builder(builder: (context) {
+                    if (currentIndex == 0) {
+                      return ListView(
+                        children: [
+                          NumberOfBook(numberOfBook: bookListLength),
+                          for (final bookModel in bookModels)
+                            BookThumbnail(
+                              bookModel: bookModel,
+                            ),
+                        ],
+                      );
+                    } else {
+                      if (state.quoteModel != null) {
+                        return QuotePage(quoteModel: state.quoteModel!);
+                      }
+                      return const Center(child: Text('No quotes'));
+                    }
+                  });
+                },
+              ),
+            ),
             floatingActionButton: currentIndex == 0
                 ? FloatingActionButton(
                     onPressed: () {
@@ -98,50 +110,6 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class QuotePage extends StatelessWidget {
-  const QuotePage({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                '"Quote, which is a much more longer than author length"',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  fontSize: 40,
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Text(
-                  'Name Surname',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 25,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
