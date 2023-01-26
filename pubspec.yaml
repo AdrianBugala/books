@@ -16,6 +16,7 @@ dependencies:
   flutterfire_ui: ^0.4.3+20
   firebase_auth: ^4.2.1
   intl: ^0.17.0
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:
