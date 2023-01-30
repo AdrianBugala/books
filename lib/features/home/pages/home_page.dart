@@ -11,8 +11,8 @@ import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/home/pages/book_thumbnail.dart';
 import 'package:my_books/features/home/pages/sorting_popup_menu_button.dart';
 import 'package:my_books/features/quote/cubit/quote_cubit.dart';
-import 'package:my_books/widgets/number_of_book.dart';
 import 'package:my_books/features/quote/pages/quote_page.dart';
+import 'package:my_books/widgets/number_of_book.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
