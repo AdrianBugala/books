@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
+import 'package:my_books/data/remote_data_sources/quote_data_source.dart';
 import 'package:my_books/domain/repositories/quote_repository.dart';
 import 'package:my_books/features/add/pages/add_page.dart';
 import 'package:my_books/features/auth/pages/user_profile.dart';
@@ -56,7 +57,8 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             body: BlocProvider(
-              create: (context) => QuoteCubit(QuoteRepository())..getQuote(),
+              create: (context) =>
+                  QuoteCubit(QuoteRepository(QuoteDataSource()))..getQuote(),
               child: BlocBuilder<QuoteCubit, QuoteState>(
                 builder: (context, state) {
                   return Builder(builder: (context) {
