@@ -6,4 +6,8 @@ class QuoteModel {
 
   final String author;
   final String quote;
+
+  QuoteModel.fromJson(Map<String, dynamic> json)
+      : author = json['author'],
+        quote = json['quote'];
 }
