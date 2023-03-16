@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_books/features/auth/pages/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:my_books/features/auth/pages/auth_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AuthGate(),
+      home: const AuthPage(),
     );
   }
 }
