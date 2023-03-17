@@ -18,7 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-// todo nie działa guzik rejestracji
+
   void signUserUp() async {
     showDialog(
       context: context,
