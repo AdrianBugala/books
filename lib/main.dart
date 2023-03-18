@@ -19,7 +19,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Books',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: const ColorScheme(
+          primary: Color(0xff326789),
+          onPrimary: Color(0xffe9eef2),
+          primaryContainer: Color(0xffC9E6FF),
+          onPrimaryContainer: Color(0xff001E2F),
+          secondary: Color(0xff326789),
+          onSecondary: Color(0xffe9eef2),
+          error: Color(0xffe65c4f),
+          onError: Color(0xffe9eef2),
+          background: Color(0xff78A6C8),
+          onBackground: Color(0xffe9eef2),
+          surface: Color(0xff78A6C8),
+          onSurface: Color(0xff191C1E),
+          brightness: Brightness.light,
+        ),
       ),
       home: const AuthPage(),
     );
