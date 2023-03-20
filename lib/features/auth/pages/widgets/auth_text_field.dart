@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AuthTextField extends StatelessWidget {
@@ -6,7 +5,7 @@ class AuthTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.obscureText,
-    super.key,
+    super.key, 
   });
   final controller;
   final String hintText;
@@ -19,24 +18,24 @@ class AuthTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obscureText,
-        style: const TextStyle(
-          color: Color(0xff326789),
-          // fontWeight: FontWeight.bold,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
         ),
-        cursorColor: const Color(0xff326789),
+        cursorColor: Theme.of(context).colorScheme.primary,
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Color.fromARGB(255, 167, 201, 227)),
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xff326789)),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
-          fillColor: const Color.fromARGB(255, 190, 215, 234),
+          fillColor: Theme.of(context).colorScheme.primaryContainer,
           filled: true,
           hintText: hintText,
-          hintStyle: const TextStyle(
-            color: Color.fromARGB(255, 255, 255, 255),
-            // fontWeight: FontWeight.w500,
+          hintStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
           ),
         ),
       ),

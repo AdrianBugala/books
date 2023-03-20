@@ -37,10 +37,10 @@ class BookThumbnail extends StatelessWidget {
           width: deviceWidth - bookCardPadding * 2,
           child: Container(
             decoration: BoxDecoration(
-              color: const Color.fromARGB(15, 0, 0, 0),
+              color: Theme.of(context).colorScheme.primaryContainer,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
+                  color: Theme.of(context).colorScheme.shadow,
                   spreadRadius: 1,
                   blurRadius: 2,
                   offset: const Offset(3, 5),
@@ -90,9 +90,12 @@ class BookThumbnail extends StatelessWidget {
                                     scrollDirection: Axis.horizontal,
                                     child: Text(
                                       bookModel.title,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                       ),
                                     ),
                                   ),
@@ -100,8 +103,11 @@ class BookThumbnail extends StatelessWidget {
                                     scrollDirection: Axis.horizontal,
                                     child: Text(
                                       bookModel.author,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 18,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                       ),
                                     ),
                                   ),
@@ -119,12 +125,22 @@ class BookThumbnail extends StatelessWidget {
                       //! Date info
                       Row(
                         children: [
-                          const Text(
+                          Text(
                             'Date added: ',
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                            ),
                           ),
                           Text(
                             bookModel.dateAddedFormatted,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                            ),
                           ),
                         ],
                       ),
@@ -134,13 +150,31 @@ class BookThumbnail extends StatelessWidget {
                         width: bookInfoWidth,
                         child: Row(
                           children: [
-                            const Text('Progress:'),
+                            Text(
+                              'Progress:',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
+                              ),
+                            ),
                             const Expanded(child: SizedBox()),
-                            const Text('Pages: '),
+                            Text(
+                              'Pages: ',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
+                              ),
+                            ),
                             Text(
                               bookModel.pages!.toStringAsFixed(0),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
+                              ),
                             ),
                           ],
                         ),

@@ -11,6 +11,7 @@ class QuotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -20,9 +21,10 @@ class QuotePage extends StatelessWidget {
               Text(
                 '"${quoteModel.quote}"',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontStyle: FontStyle.italic,
                   fontSize: 40,
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
                 ),
               ),
               const SizedBox(
@@ -33,9 +35,10 @@ class QuotePage extends StatelessWidget {
                 child: Text(
                   quoteModel.author,
                   textAlign: TextAlign.right,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontStyle: FontStyle.italic,
                     fontSize: 25,
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
                   ),
                 ),
               ),

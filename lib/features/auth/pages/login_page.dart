@@ -39,9 +39,10 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: const Color(0xff326789),
+          backgroundColor: Theme.of(context).colorScheme.error,
           title: Center(
-            child: Text(text, style: const TextStyle(color: Colors.white)),
+            child: Text(text,
+                style: TextStyle(color: Theme.of(context).colorScheme.onError)),
           ),
         );
       },
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(204, 120, 165, 200),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -59,20 +60,20 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // logo
-                const Icon(
+                Icon(
                   Icons.menu_book_rounded,
                   size: 200,
-                  color: Color(0xffe9eef2),
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
                 const SizedBox(height: 25),
 
                 // welcome message
-                const Text(
+                Text(
                   'Welcome back. Login to your account!',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff326789),
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 const SizedBox(height: 25),
@@ -108,10 +109,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     InkWell(
                       onTap: widget.onTap,
-                      child: const Text(
+                      child: Text(
                         'Register now!',
                         style: TextStyle(
-                          color: Color(0xff326789),
+                          color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

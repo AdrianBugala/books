@@ -22,16 +22,16 @@ class RemoveDialog extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('You removed the ${bookModel.title}'),
-                backgroundColor: Colors.red,
+                backgroundColor: Theme.of(context).colorScheme.error,
               ),
             );
           }
           if (state.removnigErrorOccured) {
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Unable to remove the item'),
-                backgroundColor: Colors.red,
+              SnackBar(
+                content: const Text('Unable to remove the item'),
+                backgroundColor: Theme.of(context).colorScheme.error,
               ),
             );
           }
@@ -50,9 +50,9 @@ class RemoveDialog extends StatelessWidget {
                   ),
                   const Expanded(child: SizedBox()),
                   ElevatedButton(
-                    style: const ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll<Color>(Colors.red)),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                            Theme.of(context).colorScheme.error)),
                     onPressed: () {
                       context.read<RemoveCubit>().remove(id: bookModel.id);
                     },

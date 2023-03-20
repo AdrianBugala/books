@@ -15,18 +15,35 @@ class BookPopupMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      shadowColor: Theme.of(context).colorScheme.shadow,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(7))),
       itemBuilder: (context) => [
         const PopupMenuItem(
           value: 1,
-          child: Text('Add current page'),
+          child: _TextContainer(
+            text: 'Add current page',
+            radius: BorderRadius.only(
+              topLeft: Radius.circular(5),
+              topRight: Radius.circular(5),
+            ),
+          ),
         ),
         const PopupMenuItem(
           value: 2,
-          child: Text('Edit'),
+          child: _TextContainer(
+            text: 'Edit',
+            radius: BorderRadius.zero,
+          ),
         ),
         const PopupMenuItem(
           value: 3,
-          child: Text('Delete'),
+          child: _TextContainer(
+            text: 'Delete',
+            radius: BorderRadius.only(
+                bottomLeft: Radius.circular(5),
+                bottomRight: Radius.circular(5)),
+          ),
         ),
       ],
       onSelected: (value) {
@@ -51,6 +68,32 @@ class BookPopupMenuButton extends StatelessWidget {
                   ));
         }
       },
+      color: Theme.of(context).colorScheme.primary,
+    );
+  }
+}
+
+class _TextContainer extends StatelessWidget {
+  const _TextContainer({
+    required this.text,
+    required this.radius,
+  });
+  final String text;
+  final BorderRadius radius;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(6),
+      decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          borderRadius: radius),
+      width: double.infinity,
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onSecondaryContainer),
+      ),
     );
   }
 }

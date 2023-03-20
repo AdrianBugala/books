@@ -33,29 +33,39 @@ class BookLinearPercentIndicator extends StatelessWidget {
     return '${bookModel.currentPage!.toStringAsFixed(0)} / ${bookModel.pages!.toStringAsFixed(0)}';
   }
 
-  Color get backgroundColor {
+  Color backgroundColor(Color error, Color background) {
     if (bookModel.pages! < bookModel.currentPage!) {
-      return Colors.red.shade300;
+      return error;
     }
-    return Colors.blue.shade200;
+    return background;
   }
 
-  Color get progressColor {
+  Color progressColor(Color completed, Color inProgress) {
     if ((bookModel.pages! == bookModel.currentPage!) && bookModel.pages! > 0) {
-      return Colors.green;
+      return completed;
     }
-    return Colors.blue;
+    return inProgress;
   }
 
   @override
   Widget build(BuildContext context) {
     return LinearPercentIndicator(
       width: bookInfoWidth,
-      center: Text(text),
+      center: Text(
+        text,
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+            fontWeight: FontWeight.bold),
+      ),
       percent: checkPercentValue,
       lineHeight: coverHight * 1 / 11,
-      backgroundColor: backgroundColor,
-      progressColor: progressColor,
+      backgroundColor: backgroundColor(
+          Theme.of(context).colorScheme.error,
+          // Theme.of(context).colorScheme.surface,
+          Colors.blue.shade300),
+      progressColor: progressColor(Colors.green, Colors.blue
+          // Theme.of(context).colorScheme.primary
+          ),
       padding: const EdgeInsets.symmetric(horizontal: 0),
     );
   }

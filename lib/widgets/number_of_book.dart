@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class NumberOfBook extends StatelessWidget {
   const NumberOfBook({
     required this.numberOfBook,
@@ -12,7 +11,12 @@ class NumberOfBook extends StatelessWidget {
     return Center(
         child: Padding(
       padding: const EdgeInsets.only(top: 10.0),
-      child: Text('$numberOfBook books in this folder'),
+      child: Text(
+        '$numberOfBook books in this folder',
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onBackground,
+            fontWeight: FontWeight.bold),
+      ),
     ));
   }
 }

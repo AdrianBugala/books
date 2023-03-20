@@ -17,13 +17,13 @@ class AuthButton extends StatelessWidget {
         padding: const EdgeInsets.all(25),
         margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-            color: const Color(0xff326789),
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(8)),
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
-              color: Color(0xffe9eef2),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
               fontWeight: FontWeight.w500,
             ),
           ),

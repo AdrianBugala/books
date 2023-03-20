@@ -42,7 +42,7 @@ class _AddPageState extends State<AddPage> {
             return Navigator.of(context).pop();
           } else if (state.errorMessage.isNotEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: Colors.red,
+                backgroundColor: Theme.of(context).colorScheme.error,
                 content: Text('An error occured: ${state.errorMessage}')));
           }
         },

@@ -21,6 +21,7 @@ class DetailsPage extends StatelessWidget {
         deviceWidth - coverWidth - bookInfoPadding * 2 - bookCardPadding * 2;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(title: const Text('My Book')),
       body: Padding(
         padding: EdgeInsets.all(bookCardPadding),
@@ -31,10 +32,10 @@ class DetailsPage extends StatelessWidget {
               width: double.infinity,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(15, 0, 0, 0),
+                  color: Theme.of(context).colorScheme.primaryContainer,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.shadow,
                       spreadRadius: 1,
                       blurRadius: 2,
                       offset: const Offset(3, 5),
@@ -83,9 +84,12 @@ class DetailsPage extends StatelessWidget {
                                         scrollDirection: Axis.horizontal,
                                         child: Text(
                                           bookModel.title,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                           ),
                                         ),
                                       ),
@@ -93,8 +97,11 @@ class DetailsPage extends StatelessWidget {
                                         scrollDirection: Axis.horizontal,
                                         child: Text(
                                           bookModel.author,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontSize: 18,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
                                           ),
                                         ),
                                       ),
@@ -113,7 +120,11 @@ class DetailsPage extends StatelessWidget {
                                         ),
                                       );
                                     },
-                                    icon: const Icon(Icons.history))
+                                    icon: Icon(
+                                      Icons.history,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ))
                               ],
                             ),
                           ),
@@ -124,10 +135,30 @@ class DetailsPage extends StatelessWidget {
                             width: bookInfoWidth,
                             child: Row(
                               children: [
-                                const Text('Progress:'),
+                                Text(
+                                  'Progress:',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                  ),
+                                ),
                                 const Expanded(child: SizedBox()),
-                                const Text('Pages:'),
-                                Text(bookModel.pages!.toStringAsFixed(0)),
+                                Text('Pages: ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondaryContainer,
+                                    )),
+                                Text(bookModel.pages!.toStringAsFixed(0),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondaryContainer,
+                                    )),
                               ],
                             ),
                           ),
@@ -152,10 +183,10 @@ class DetailsPage extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(15, 0, 0, 0),
+                    color: Theme.of(context).colorScheme.primaryContainer,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
+                        color: Theme.of(context).colorScheme.shadow,
                         spreadRadius: 1,
                         blurRadius: 2,
                         offset: const Offset(3, 5),
@@ -171,15 +202,23 @@ class DetailsPage extends StatelessWidget {
                     //! Body of book (description, comment, date etc.)
                     child: ListView(
                       children: [
-                        const Text(
+                        Text(
                           'Describtion:',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                          ),
                         ),
                         Text(
                           bookModel.description ?? '',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
                           ),
                         ),
                         const Divider(
@@ -188,15 +227,23 @@ class DetailsPage extends StatelessWidget {
                           indent: 10,
                           thickness: 1,
                         ),
-                        const Text(
+                        Text(
                           'Comment:',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                          ),
                         ),
                         Text(
                           bookModel.comment ?? '',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
                           ),
                         ),
                         const Divider(
@@ -205,15 +252,23 @@ class DetailsPage extends StatelessWidget {
                           indent: 10,
                           thickness: 1,
                         ),
-                        const Text(
+                        Text(
                           'Date added:',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                          ),
                         ),
                         Text(
                           bookModel.dateAddedFormatted,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
                           ),
                         ),
                       ],

@@ -20,8 +20,10 @@ class BookHistoryDetails extends StatelessWidget {
             children: [
               Text(
                 '${index + 1}.',
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSecondaryContainer),
               ),
               const SizedBox(
                 width: 10,
@@ -29,14 +31,19 @@ class BookHistoryDetails extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Date:',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer),
                   ),
                   Text(
                     historyModel.dateAddedFormatted,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
                   ),
                 ],
@@ -47,14 +54,19 @@ class BookHistoryDetails extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Pages read:',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer),
                   ),
                   Text(
                     historyModel.pagesRead.toStringAsFixed(0),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
                   ),
                 ],
@@ -65,23 +77,37 @@ class BookHistoryDetails extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Current page:',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer),
                   ),
                   Row(
                     children: [
                       Text(
                         historyModel.lastPage.toStringAsFixed(0),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
                         ),
                       ),
-                      const Icon(Icons.arrow_right_alt),
+                      Icon(
+                        Icons.arrow_right_alt,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer,
+                      ),
                       Text(
                         historyModel.currentPage.toStringAsFixed(0),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
                         ),
                       ),
                     ],

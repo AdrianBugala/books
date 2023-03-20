@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(errorMessage),
-                backgroundColor: Colors.red,
+                backgroundColor: Theme.of(context).colorScheme.error,
               ),
             );
           }
@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
           final bookListLength = state.bookModel.length;
           final bookModels = state.bookModel;
           return Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.background,
             appBar: AppBar(
               title: const Text('Books'),
               actions: [
@@ -101,8 +102,8 @@ class _HomePageState extends State<HomePage> {
                   currentIndex = index;
                 });
               },
-              backgroundColor: Colors.blue,
-              fixedColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              fixedColor: Theme.of(context).colorScheme.onPrimary,
               items: const [
                 BottomNavigationBarItem(
                     icon: Icon(Icons.menu_book_rounded), label: 'Books'),

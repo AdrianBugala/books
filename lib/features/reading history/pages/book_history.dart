@@ -27,23 +27,24 @@ class BookHistory extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(errorMessage),
-                backgroundColor: Colors.red,
+                backgroundColor: Theme.of(context).colorScheme.error,
               ),
             );
           }
         },
         builder: (context, state) {
           return Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.background,
             appBar: AppBar(title: const Text('History')),
             body: Padding(
               padding: EdgeInsets.all(bookCardPadding),
               child: Container(
                 width: deviceWidth,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(15, 0, 0, 0),
+                  color: Theme.of(context).colorScheme.primaryContainer,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.shadow,
                       spreadRadius: 1,
                       blurRadius: 2,
                       offset: const Offset(3, 5),
@@ -56,8 +57,14 @@ class BookHistory extends StatelessWidget {
                 child: Builder(
                   builder: (context) {
                     if (state.historyModel.isEmpty) {
-                      return const Center(
-                        child: Text('You don\'t have a story yet'),
+                      return Center(
+                        child: Text(
+                          'You don\'t have a story yet',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer),
+                        ),
                       );
                     }
                     return Padding(
