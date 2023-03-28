@@ -1,13 +1,10 @@
 part of 'home_cubit.dart';
 
-class HomeState {
-  HomeState({
-    this.status = Status.initial,
-    this.bookModel = const [],
-    this.errorMessage,
-  });
-
-  final Status status;
-  final List<BookModel> bookModel;
-  final String? errorMessage;
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState({
+    @Default(Status.initial) Status status,
+    @Default([]) List<BookModel> bookModel,
+    String? errorMessage,
+  }) = _HomeState;
 }

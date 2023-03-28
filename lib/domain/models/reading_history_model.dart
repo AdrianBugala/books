@@ -1,17 +1,18 @@
 import 'package:intl/intl.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ReadingHistoryModel {
-  ReadingHistoryModel({
-    required this.currentPage,
-    required this.lastPage,
-    required this.pagesRead,
-    required this.dateAdded,
-  });
+part 'reading_history_model.freezed.dart';
 
-  final double currentPage;
-  final double lastPage;
-  final double pagesRead;
-  final DateTime dateAdded;
+@freezed
+class ReadingHistoryModel with _$ReadingHistoryModel {
+  const ReadingHistoryModel._();
+
+  const factory ReadingHistoryModel({
+    required double currentPage,
+    required double lastPage,
+    required double pagesRead,
+    required DateTime dateAdded,
+  }) = _ReadingHistoryModel;
 
   String get dateAddedFormatted {
     return DateFormat.yMMMd().format(dateAdded);
