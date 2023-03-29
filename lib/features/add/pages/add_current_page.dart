@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
+import 'package:my_books/app/injection_container.dart';
 import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/domain/models/reading_history_model.dart';
-import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/add/cubit/add_cubit.dart';
 
 class AddCurrentPage extends StatelessWidget {
@@ -17,14 +16,14 @@ class AddCurrentPage extends StatelessWidget {
     DateTime? dateAdded = DateTime.now();
 
     return BlocProvider(
-      create: (context) => AddCubit(BookRepository(BookRemoteDataSource())),
+      create: (context) => getIt<AddCubit>(),
       child: BlocConsumer<AddCubit, AddState>(
         listener: (context, state) {
           if (state.saved) {
             Navigator.of(context).pop();
           } else if (state.errorMessage.isNotEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor:Theme.of(context).colorScheme.error,
+                backgroundColor: Theme.of(context).colorScheme.error,
                 content: Text('An error occured: ${state.errorMessage}')));
           }
         },

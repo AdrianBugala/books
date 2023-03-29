@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
+import 'package:my_books/app/injection_container.dart';
 import 'package:my_books/domain/models/book_model.dart';
-import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/edit/cubit/edit_cubit.dart';
 
 class EditPage extends StatefulWidget {
@@ -34,7 +33,7 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EditCubit(BookRepository(BookRemoteDataSource())),
+      create: (context) => getIt<EditCubit>(),
       child: BlocConsumer<EditCubit, EditState>(
         listener: (context, state) {
           if (state.saved == true) {
