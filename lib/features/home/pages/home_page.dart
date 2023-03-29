@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
@@ -58,8 +59,9 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             body: BlocProvider(
-              create: (context) =>
-                  QuoteCubit(QuoteRepository(QuoteDataSource()))..getQuote(),
+              create: (context) => QuoteCubit(
+                  QuoteRepository(QuoteRemoteRetrofitDataSource(Dio())))
+                ..getQuote(),
               child: BlocBuilder<QuoteCubit, QuoteState>(
                 builder: (context, state) {
                   return Builder(builder: (context) {

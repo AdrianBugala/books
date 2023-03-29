@@ -1,13 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:my_books/domain/models/quote_model.dart';
+import 'package:retrofit/retrofit.dart';
 
-class QuoteDataSource {
-  Future<List<Map<String, dynamic>>> getQuotes() async {
-    final response = await Dio().get<List<dynamic>>(
-        'https://my-json-server.typicode.com/AdrianBugala/quotesjson/quotes');
-    final listDynamic = response.data;
+part 'quote_data_source.g.dart';
 
-    return listDynamic!
-        .map((quotes) => quotes as Map<String, dynamic>)
-        .toList();
-  }
+@RestApi(
+    baseUrl: "https://my-json-server.typicode.com/AdrianBugala/quotesjson/")
+abstract class QuoteRemoteRetrofitDataSource {
+  factory QuoteRemoteRetrofitDataSource(Dio dio, {String baseUrl}) =
+      _QuoteRemoteRetrofitDataSource;
+
+  @GET("/quotes")
+  Future<List<QuoteModel>> getQuotes();
 }
