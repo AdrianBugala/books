@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:my_books/domain/repositories/book_repository.dart';
 
 part 'remove_state.dart';
 part 'remove_cubit.freezed.dart';
 
+@injectable
 class RemoveCubit extends Cubit<RemoveState> {
   RemoveCubit(this._bookRepository) : super(const RemoveState());
 

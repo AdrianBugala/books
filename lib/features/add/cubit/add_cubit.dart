@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/domain/models/reading_history_model.dart';
 import 'package:my_books/domain/repositories/book_repository.dart';
@@ -7,6 +8,7 @@ import 'package:my_books/domain/repositories/book_repository.dart';
 part 'add_state.dart';
 part 'add_cubit.freezed.dart';
 
+@injectable
 class AddCubit extends Cubit<AddState> {
   AddCubit(this._bookRepository) : super(const AddState());
 

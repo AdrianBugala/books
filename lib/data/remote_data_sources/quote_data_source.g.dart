@@ -12,9 +12,7 @@ class _QuoteRemoteRetrofitDataSource implements QuoteRemoteRetrofitDataSource {
   _QuoteRemoteRetrofitDataSource(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://my-json-server.typicode.com/AdrianBugala/quotesjson/';
-  }
+  });
 
   final Dio _dio;
 
