@@ -1,11 +1,9 @@
 part of 'edit_cubit.dart';
 
-class EditState {
-  EditState({
-    this.saved = false,
-    this.errorMessage = '',
-  });
-
-  final bool saved;
-  final String errorMessage;
+@freezed
+class EditState with _$EditState {
+  const factory EditState({
+    @Default(false) bool saved,
+    @Default('') String errorMessage,
+  }) = _EditState;
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_books/app/core/enums.dart';
-import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
-import 'package:my_books/domain/repositories/book_repository.dart';
+import 'package:my_books/app/injection_container.dart';
 import 'package:my_books/features/reading%20history/cubit/reading_history_cubit.dart';
 import 'package:my_books/features/reading%20history/pages/book_history_details.dart';
 
@@ -17,9 +16,7 @@ class BookHistory extends StatelessWidget {
     double bookCardPadding = 5;
 
     return BlocProvider(
-      create: (context) =>
-          ReadingHistoryCubit(BookRepository(BookRemoteDataSource()))
-            ..start(id: id),
+      create: (context) => getIt<ReadingHistoryCubit>()..start(id: id),
       child: BlocConsumer<ReadingHistoryCubit, ReadingHistoryState>(
         listener: (context, state) {
           if (state.status == Status.error) {

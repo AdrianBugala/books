@@ -1,11 +1,9 @@
 part of 'add_cubit.dart';
 
-class AddState {
-  AddState({
-    this.saved = false,
-    this.errorMessage = '',
-  });
-
-  final bool saved;
-  final String errorMessage;
+@freezed
+class AddState with _$AddState {
+  const factory AddState({
+    @Default(false) bool saved,
+    @Default('') String errorMessage,
+  }) = _AddState;
 }

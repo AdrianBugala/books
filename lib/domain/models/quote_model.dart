@@ -1,13 +1,15 @@
-class QuoteModel {
-  QuoteModel({
-    required this.author,
-    required this.quote,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  final String author;
-  final String quote;
+part 'quote_model.g.dart';
+part 'quote_model.freezed.dart';
 
-  QuoteModel.fromJson(Map<String, dynamic> json)
-      : author = json['author'],
-        quote = json['quote'];
+@freezed
+class QuoteModel with _$QuoteModel {
+  const factory QuoteModel({
+    required String author,
+    required String quote,
+  }) = _QuoteModel;
+
+  factory QuoteModel.fromJson(Map<String, Object?> json) =>
+      _$QuoteModelFromJson(json);
 }

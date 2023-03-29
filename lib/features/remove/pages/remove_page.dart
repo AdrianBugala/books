@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
+import 'package:my_books/app/injection_container.dart';
 import 'package:my_books/domain/models/book_model.dart';
-import 'package:my_books/domain/repositories/book_repository.dart';
 import 'package:my_books/features/remove/cubit/remove_cubit.dart';
 
 class RemoveDialog extends StatelessWidget {
@@ -14,7 +13,7 @@ class RemoveDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RemoveCubit(BookRepository(BookRemoteDataSource())),
+      create: (context) => getIt<RemoveCubit>(),
       child: BlocConsumer<RemoveCubit, RemoveState>(
         listener: (context, state) {
           if (state.remove) {

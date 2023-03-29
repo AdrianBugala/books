@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 import 'package:my_books/data/remote_data_sources/book_remote_data_source.dart';
 import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/domain/models/reading_history_model.dart';
 
+@injectable
 class BookRepository {
   BookRepository(this._bookRemoteDataSource);
 

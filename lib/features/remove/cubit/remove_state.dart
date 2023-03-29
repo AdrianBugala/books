@@ -1,11 +1,9 @@
 part of 'remove_cubit.dart';
 
-class RemoveState {
-  RemoveState({
-    this.remove = false,
-    this.removnigErrorOccured = false,
-  });
-
-  final bool remove;
-  final bool removnigErrorOccured;
+@freezed
+class RemoveState with _$RemoveState {
+  const factory RemoveState({
+    @Default(false) bool remove,
+    @Default(false) bool removnigErrorOccured,
+  }) = _RemoveState;
 }
