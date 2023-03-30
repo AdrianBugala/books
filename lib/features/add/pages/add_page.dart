@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:my_books/app/injection_container.dart';
 import 'package:my_books/domain/models/book_model.dart';
 import 'package:my_books/features/add/cubit/add_cubit.dart';
+import 'package:my_books/widgets/add_text_field.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});
@@ -47,128 +48,102 @@ class _AddPageState extends State<AddPage> {
         },
         builder: (context, state) {
           return Scaffold(
-              appBar: AppBar(
-                title: const Text('Add Book'),
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      context.read<AddCubit>().addBook(
-                            book: BookModel(
-                              title: title ?? 'Title',
-                              author: author ?? '',
-                              imageURL: imageURL ?? defaultCover,
-                              description: description ?? '',
-                              comment: comment ?? '',
-                              pages: pages ?? 0,
-                              currentPage: currentPage ?? 0,
-                              dateAdded: dateAdded ?? DateTime.now(),
-                            ),
-                          );
-                    },
-                    icon: const Icon(Icons.check),
-                  ),
-                ],
-              ),
-              body: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: ListView(
-                  children: [
-                    TextField(
+            appBar: AppBar(
+              title: const Text('Add Book'),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    context.read<AddCubit>().addBook(
+                          book: BookModel(
+                            title: title ?? 'Title',
+                            author: author ?? '',
+                            imageURL: imageURL ?? defaultCover,
+                            description: description ?? '',
+                            comment: comment ?? '',
+                            pages: pages ?? 0,
+                            currentPage: currentPage ?? 0,
+                            dateAdded: dateAdded ?? DateTime.now(),
+                          ),
+                        );
+                  },
+                  icon: const Icon(Icons.check),
+                ),
+              ],
+            ),
+            body: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ListView(
+                children: [
+                  AddTextField(
                       onChanged: (newValue) {
                         title = newValue;
                       },
-                      autofocus: true,
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: const InputDecoration(
-                        label: Text('Title*:'),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    TextField(
+                      text: 'Title*:',
+                      autofocus: true),
+                  AddTextField(
                       onChanged: (newValue) {
                         author = newValue;
                       },
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: const InputDecoration(
-                        label: Text('Author(s):'),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    TextField(
+                      text: 'Author(s):',
+                      textCapitalization: TextCapitalization.words),
+                  AddTextField(
                       onChanged: (newValue) {
                         imageURL = newValue;
                       },
-                      keyboardType: TextInputType.url,
-                      decoration: const InputDecoration(
-                        label: Text('ImageUrl:'),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    TextField(
+                      text: 'ImageUrl:',
+                      keyboardType: TextInputType.url),
+                  AddTextField(
                       onChanged: (newValue) {
                         pages = double.tryParse(newValue);
                       },
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        label: Text('Pages:'),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    TextField(
+                      text: 'Pages:',
+                      keyboardType: TextInputType.number),
+                  AddTextField(
                       onChanged: (newValue) {
                         description = newValue;
                       },
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: const InputDecoration(
-                        label: Text('Description:'),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    TextField(
+                      text: 'Description:'),
+                  AddTextField(
                       onChanged: (newValue) {
                         comment = newValue;
                       },
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: const InputDecoration(
-                        label: Text('Comment:'),
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            const Expanded(
-                              child: Text(
-                                'Date added',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
+                      text: 'Comment:'),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Expanded(
+                            child: Text(
+                              'Date added',
+                              style: TextStyle(
+                                fontSize: 18,
                               ),
                             ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                final selectedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime.now()
-                                      .subtract(const Duration(days: 365)),
-                                  lastDate: DateTime.now(),
-                                );
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              final selectedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now()
+                                    .subtract(const Duration(days: 365)),
+                                lastDate: DateTime.now(),
+                              );
 
-                                setState(() {
-                                  dateAdded = selectedDate;
-                                });
-                              },
-                              child: Text(selectedDateFormatted),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ));
+                              setState(() {
+                                dateAdded = selectedDate;
+                              });
+                            },
+                            child: Text(selectedDateFormatted),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
         },
       ),
     );
