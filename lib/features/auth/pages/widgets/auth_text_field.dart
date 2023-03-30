@@ -5,9 +5,9 @@ class AuthTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.obscureText,
-    super.key, 
+    super.key,
   });
-  final controller;
+  final dynamic controller;
   final String hintText;
   final bool obscureText;
 
@@ -18,6 +18,7 @@ class AuthTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obscureText,
+        keyboardType: TextInputType.emailAddress,
         style: TextStyle(
           color: Theme.of(context).colorScheme.primary,
         ),
