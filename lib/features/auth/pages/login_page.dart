@@ -27,7 +27,9 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text,
       );
-      Navigator.pop(context);
+      if (context.mounted) {
+        Navigator.pop(context);
+      }
     } on FirebaseAuthException catch (error) {
       Navigator.pop(context);
       showErrorMessage(error.message.toString());
@@ -94,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 // button
                 AuthButton(
-                  onTap: signUserIn,
+                  onTap: (signUserIn),
                   text: 'Login',
                 ),
                 const SizedBox(height: 50),

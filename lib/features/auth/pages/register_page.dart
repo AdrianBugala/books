@@ -37,8 +37,9 @@ class _RegisterPageState extends State<RegisterPage> {
         showErrorMessage('Password don\' match');
         return;
       }
-
-      Navigator.pop(context);
+      if (context.mounted) {
+        Navigator.pop(context);
+      }
     } on FirebaseAuthException catch (error) {
       Navigator.pop(context);
       showErrorMessage(error.message.toString());
