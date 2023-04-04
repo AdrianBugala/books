@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_books/app/injection_container.dart';
 import 'package:my_books/features/auth/cubit/auth_cubit.dart';
 import 'package:my_books/features/auth/pages/login_or_register.dart';
 import 'package:my_books/features/home/pages/home_page.dart';
@@ -10,7 +11,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit()..start(),
+      create: (context) => getIt<AuthCubit>()..start(),
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           if (state.user == null) {
