@@ -16,6 +16,7 @@ class BookRemoteDataSource {
           .collection('users')
           .doc(userID)
           .collection('books')
+          .orderBy('date_added', descending: true)
           .snapshots();
 
       return stream;
