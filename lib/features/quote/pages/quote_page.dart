@@ -19,6 +19,18 @@ class QuotePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
+                'Quote of the day:',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 45,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Text(
                 '"${quoteModel.quote}"',
                 textAlign: TextAlign.center,
                 style: TextStyle(
