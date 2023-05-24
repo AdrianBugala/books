@@ -34,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       } else {
         Navigator.pop(context);
-        showErrorMessage('Password don\' match');
+        showErrorMessage('Password doesn\'t match');
         return;
       }
       if (context.mounted) {
