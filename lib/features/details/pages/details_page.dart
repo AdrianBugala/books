@@ -203,7 +203,7 @@ class DetailsPage extends StatelessWidget {
                     child: ListView(
                       children: [
                         Text(
-                          'Describtion:',
+                          'Description:',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
