@@ -70,9 +70,10 @@ class BookHistory extends StatelessWidget {
                         itemCount: state.historyModel.length,
                         itemBuilder: (context, index) {
                           final historyModel = state.historyModel;
+                          final reverseIndex = state.historyModel.length - index;
                           return BookHistoryDetails(
                             historyModel: historyModel[index],
-                            index: index,
+                            index: reverseIndex,
                           );
                         },
                       ),

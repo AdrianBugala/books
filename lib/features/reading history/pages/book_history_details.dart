@@ -19,7 +19,7 @@ class BookHistoryDetails extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                '${index + 1}.',
+                '$index.',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
